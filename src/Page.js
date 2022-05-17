@@ -1,14 +1,26 @@
 import React from 'react';
 import ThemeContext from './ThemeContext';
 import { useContext } from 'react';
+import styled from 'styled-components';
 
+const Button = styled.button`
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: ${props => props.primary ? "black" : "grey"};
+    background-color: ${props => props.primary ? "grey" : "black"};
+`
 
 function Page() {
     const {theme, toggleTheme} = useContext(ThemeContext)
 
   return (
     <div className={theme}>
-        <button onClick={toggleTheme}>Change theme</button>
+        {
+            theme === "light" ?
+            <Button onClick={toggleTheme}>Change theme</Button> :
+            <Button onClick={toggleTheme} primary>Change theme</Button>
+        }
     </div>
   )
 }
